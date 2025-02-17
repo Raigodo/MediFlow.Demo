@@ -1,0 +1,83 @@
+services:
+    proxy:
+        image: nginx:mainline
+        depends_on:
+            - api
+            - app
+        networks:
+            - public_network
+            - inner_network
+        restart: always
+        volumes:
+            - ./nginx.conf:/etc/nginx/nginx.conf
+            - ./certbot/conf:/etc/letsencrypt
+            - ./certbot/www:/var/www/certbot
+        ports:
+            - "80:80"
+    
+    certbot:
+        image: certbot/certbot
+        container_name: certbot
+        volumes:
+            - ./certbot/conf:/etc/letsencrypt
+            - ./certbot/www:/var/www/certbot
+        command: certonly --webroot -w /var/www/certbot --force-renewal --email valters51423@gmail.com -d mediflow.lv --agree-tos
+
+    api:
+        container_name: mediflow.api
+        depends_on:
+            - database
+        environment:
+            - ConnectionStrings:Database=User id=postgres; Password=P@55w0rd; Server=database; Port=5432; Database=mediflow.db;
+            - DataSecurity:EncryptionKeys:Current=hyuE9bcf3VbZRNR5JJGnv06OvnHmVQCA
+            - JwtOptions:SecretKey=secretkeysecretkeysecretkeysecretkeysecretkeysecretkey
+            - JwtOptions:Audience=audience
+            - JwtOptions:Issuer=issuer
+            - JwtOptions:ExpiresMinutes=15
+            - TimeLimitedToken:SecretKey=secretkeysecretkeysecretkeysecretkeysecretkeysecretkey
+        build:
+            context: ./mediflow.api
+            dockerfile: MediFlow.Api/Dockerfile
+        networks:
+            - inner_network
+            - database_network
+
+    database:
+        container_name: database
+        image: postgres:latest
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: P@55w0rd
+            POSTGRES_DB: mediflow.db
+        ports:
+            - "5432:5432"
+        networks:
+            - database_network
+        volumes:
+            - mediflow.volume:/var/lib/postgresql/data
+        restart: always
+    
+    app:
+        container_name: mediflow.app
+        build:
+            context: ./mediflow.web
+            dockerfile: Dockerfile
+            args:
+                ENV_VARIABLE: ${ENV_VARIABLE}
+                NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
+        restart: always
+        ports:
+            - 3000:3000
+        networks:
+            - inner_network
+
+networks:
+    public_network:
+        driver: bridge
+    inner_network:
+        internal: true
+    database_network:
+        internal: true
+
+volumes:
+    mediflow.volume:

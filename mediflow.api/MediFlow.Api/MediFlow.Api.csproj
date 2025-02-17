@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+		<IncludeSymbols>False</IncludeSymbols>
+		<UserSecretsId>7837935a-e060-41df-be50-d01f8841762c</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
+		<PackageReference Include="Mediator.Abstractions" Version="2.1.7" />
+		<PackageReference Include="Mediator.SourceGenerator" Version="2.1.7">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.1" />
+		<PackageReference Include="SharpGrip.FluentValidation.AutoValidation.Endpoints" Version="1.5.0" />
+		<PackageReference Include="SixLabors.ImageSharp" Version="3.1.6" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.1" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.3" />
+		<PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.1">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <Folder Include="Application\Converters\Enum\" />
+	</ItemGroup>
+
+</Project>

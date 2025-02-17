@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediFlow.Api", "MediFlow.Api\MediFlow.Api.csproj", "{74A5DAB5-5B42-4389-85C9-B21CE87E9707}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{FE2B44BB-1062-403C-B98B-D5E2F1BD9C7C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{74A5DAB5-5B42-4389-85C9-B21CE87E9707}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74A5DAB5-5B42-4389-85C9-B21CE87E9707}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74A5DAB5-5B42-4389-85C9-B21CE87E9707}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74A5DAB5-5B42-4389-85C9-B21CE87E9707}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE2B44BB-1062-403C-B98B-D5E2F1BD9C7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE2B44BB-1062-403C-B98B-D5E2F1BD9C7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE2B44BB-1062-403C-B98B-D5E2F1BD9C7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE2B44BB-1062-403C-B98B-D5E2F1BD9C7C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3849E620-FBDF-47D1-BA5F-72143C724E24}
+	EndGlobalSection
+EndGlobal
