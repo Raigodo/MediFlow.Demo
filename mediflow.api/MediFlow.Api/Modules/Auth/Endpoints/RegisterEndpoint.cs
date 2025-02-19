@@ -66,6 +66,12 @@ public static class RegisterEndpoint
             return responseFactory.Unauthorized();
         }
 
+        var emailTaken = await userRepository.GetOneAsync(req.Email);
+        if (emailTaken is not null)
+        {
+            return responseFactory.Conflict<User>(nameof(req.Email));
+        }
+
         var user = new User
         {
             Name = req.UserName,

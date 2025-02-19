@@ -9,9 +9,9 @@ interface LayoutProps {
 }
 
 const Layout: FC<LayoutProps> = ({ children }) => {
-  const { hasStructure, isManager } = useUserSession();
+  const { hasStructure } = useUserSession();
   if (hasStructure) return <>{children}</>;
-  return <>{isManager && <CreateStructureModalProvider />}</>;
+  return null;
 };
 
 export default Layout;

@@ -161,7 +161,7 @@ const CreateUserModal: ModalWrapperItem = ({ isOpen, onClose }) => {
                   <FormControl>
                     <Input
                       type="password"
-                      placeholder="mansepasts@gmail.com"
+                      placeholder="parole"
                       {...field}
                       disabled={form.formState.isSubmitting}
                     />

@@ -63,7 +63,6 @@ const CreateStructureModal: ModalWrapperItem = ({ isOpen, onClose }) => {
         throw Error('structure created but no structure id was provided');
       }
       toast({
-        variant: 'destructive',
         title: 'Struktūra veiksmīgi izveidota',
       });
       await alterSessionSctructureScope(response.body.id);

@@ -11,10 +11,17 @@ public sealed class ResponseFactory
 
     public IResult Conflict<TEntity>(string propertyName = "id")
     {
+        var errors = new Dictionary<string, string[]>
+        {
+            {propertyName, [$"{typeof(TEntity).Name} with provided {propertyName} already exists."] }
+        };
+
         var responseBody = new
         {
             Title = $"{typeof(TEntity).Name} with provided {propertyName} already exists.",
+            Errors = errors
         };
+
         return TypedResults.Conflict(responseBody);
     }
 
@@ -28,7 +35,7 @@ public sealed class ResponseFactory
     }
 
     public IResult BadRequest() => BadRequest("One or more validation errors occurred.");
-    public IResult BadRequest(Dictionary<string, IEnumerable<string>> errors) => 
+    public IResult BadRequest(Dictionary<string, IEnumerable<string>> errors) =>
         BadRequest("One or more validation errors occurred.", errors);
 
     public IResult BadRequest(

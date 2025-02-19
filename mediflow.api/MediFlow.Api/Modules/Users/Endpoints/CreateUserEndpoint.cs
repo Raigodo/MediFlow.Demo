@@ -35,7 +35,7 @@ public static class CreateUserEndpoint
         var emailTaken = await userRepository.ExistsAsync(req.Email);
         if (emailTaken)
         {
-            return responseFactory.Conflict<User>("Email");
+            return responseFactory.Conflict<User>(nameof(req.Email));
         }
 
         var user = new User

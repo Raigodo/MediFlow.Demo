@@ -4,6 +4,7 @@ import ClientsSidelist from '@/components/client/ClientsSidelist';
 import CreateClientModalProvider from '@/components/client/modals/CreateClientModalProvider';
 import Toolbar from '@/components/layout/toolbar/Toolbar';
 import Topbar from '@/components/layout/topbar/Topbar';
+import CreateStructureModalProvider from '@/components/manager/modals/CreateStructureModalProvider';
 import { Toaster } from '@/components/ui/toaster';
 import { RouteNames } from '@/lib/RouteNames';
 import SelectedClientContextProvider from '@/setup/contexts/app/SelectedClientContext';
@@ -13,7 +14,7 @@ import { redirect } from 'next/navigation';
 import { ReactNode } from 'react';
 
 function Layout({ children }: { children: ReactNode }) {
-  const { isAdmin } = useUserSession();
+  const { isAdmin, isManager } = useUserSession();
   if (isAdmin) {
     redirect(RouteNames.AdminHome);
   }
@@ -43,6 +44,7 @@ function Layout({ children }: { children: ReactNode }) {
             <>{children}</>
           </div>
         </div>
+        {isManager && <CreateStructureModalProvider />}
         <Toaster />
         <CreateClientModalProvider />
       </SelectedClientContextProvider>

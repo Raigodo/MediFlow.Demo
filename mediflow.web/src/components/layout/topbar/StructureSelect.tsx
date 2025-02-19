@@ -83,22 +83,18 @@ const RenderStructureSelect = ({
               Nav nevienas struktūrvienības
             </p>
           )}
-          {participating.length <= 0 && (
-            <>
-              <Separator className="mx-auto my-2 w-[80%]" />
-              <Button
-                variant={'ghost'}
-                className="w-full font-normal"
-                onClick={() =>
-                  open({
-                    modalKey: ManagerModalKeys.CreateStructure,
-                  })
-                }
-              >
-                Izveidot struktūrvienību?
-              </Button>
-            </>
-          )}
+          <Separator className="mx-auto my-2 w-[80%]" />
+          <Button
+            variant={'ghost'}
+            className="w-full font-normal"
+            onClick={() =>
+              open({
+                modalKey: ManagerModalKeys.CreateStructure,
+              })
+            }
+          >
+            Izveidot struktūrvienību?
+          </Button>
         </SelectGroup>
       </SelectContent>
     </Select>

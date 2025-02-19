@@ -16,7 +16,7 @@ using SharpGrip.FluentValidation.AutoValidation.Endpoints.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
-    //.AddDevCors()
+    .AddDevCors()
     .AddEndpointsApiExplorer()
     .AddSwaggerGenWithJwtAuthSupport()
     .AddHttpContextAccessor()
@@ -53,8 +53,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app
-    .UseHttpsRedirection()
-    //.UseDevCors()
+    //.UseHttpsRedirection()
+    .UseDevCors()
     .UseAuthentication()
     .UseMiddleware<GlobalExceptionHandler>()
     .UseAuthorization();
