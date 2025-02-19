@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input {
+	color-scheme: light;
+}
+
+.rdp-vhidden {
+	@apply hidden;
+}
+
+/* @media only screen and (orientation: portrait) {
+	html {
+		height: 100vw;
+		-webkit-transform: rotate(90deg);
+		-moz-transform: rotate(90deg);
+		-o-transform: rotate(90deg);
+		-ms-transform: rotate(90deg);
+		transform: rotate(90deg);
+	}
+}
+@media only screen and (orientation: landscape) {
+	html {
+		-webkit-transform: rotate(0deg);
+		-moz-transform: rotate(0deg);
+		-o-transform: rotate(0deg);
+		-ms-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+} */
+
+@layer base {
+	:root {
+		--background: 96 0% 95%;
+		--foreground: 96 0% 10%;
+		--card: 96 0% 90%;
+		--card-foreground: 96 0% 15%;
+		--popover: 96 0% 95%;
+		--popover-foreground: 96 95% 10%;
+		--primary: 96 41.7% 61%;
+		--primary-foreground: 0 0% 0%;
+		--secondary: 96 10% 75%;
+		--secondary-foreground: 0 0% 0%;
+		--muted: 58 10% 85%;
+		--muted-foreground: 96 0% 40%;
+		--accent: 58 10% 80%;
+		--accent-foreground: 96 0% 15%;
+		--destructive: 0 50% 50%;
+		--destructive-foreground: 96 0% 90%;
+		--border: 96 20% 75%;
+		--input: 96 20% 50%;
+		--ring: 96 41.7% 61%;
+		--radius: 1rem;
+	}
+	.dark {
+		--background: 96 10% 10%;
+		--foreground: 96 0% 90%;
+		--card: 96 0% 10%;
+		--card-foreground: 96 0% 90%;
+		--popover: 96 10% 5%;
+		--popover-foreground: 96 0% 90%;
+		--primary: 96 41.7% 61%;
+		--primary-foreground: 0 0% 0%;
+		--secondary: 96 10% 20%;
+		--secondary-foreground: 0 0% 100%;
+		--muted: 58 10% 25%;
+		--muted-foreground: 96 0% 65%;
+		--accent: 58 10% 25%;
+		--accent-foreground: 96 0% 90%;
+		--destructive: 0 50% 50%;
+		--destructive-foreground: 96 0% 90%;
+		--border: 96 20% 50%;
+		--input: 96 20% 50%;
+		--ring: 96 41.7% 61%;
+		--radius: 1rem;
+	}
+}
+
+@layer base {
+	* {
+		@apply border-border;
+	}
+	body {
+		@apply bg-background text-foreground;
+	}
+}
