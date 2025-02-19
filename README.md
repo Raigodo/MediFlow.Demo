@@ -15,6 +15,7 @@ Pieslēdzoties sistēmai ir trīs opcijas:
 * Register - kad darbienikam vēl nav profila
 
 **Kā lietot**
+
 Šis ir projekts, kas ļauj vadītājam pārvaldīt vairākas struktūrvienības, un darbiniekus un klientus tajās.
 
 Lai palaistu projektu ieteicams izmantot metodi ar docker izmantošanu:
