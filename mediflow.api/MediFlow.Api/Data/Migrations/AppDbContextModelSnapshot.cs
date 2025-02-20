@@ -326,7 +326,7 @@ namespace MediFlow.Api.Data.Migrations
                             Id = new Guid("30007b30-bdf0-4e7d-bac3-2bfca69a8c4f"),
                             Email = "mediflow.noreply@gmail.com",
                             Name = "Admin",
-                            PasswordHash = "$2a$11$NO1OkTLc9Y3hg4HVYbB9k.KeL2L.ZmecWzPbIqTUh47gR5WtC4BJ.",
+                            PasswordHash = "$2a$11$XBJDRZO3cIpRhoFYi.wGieOF9gRcf1FbzyFpwDf9rbAyomQmma.ya",
                             RefreshToken = new Guid("ea6aea58-b934-48a6-982c-d777145aa077"),
                             Role = 100,
                             Surname = "First"

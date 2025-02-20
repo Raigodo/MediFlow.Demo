@@ -9,7 +9,7 @@ import { AdminModalKeys } from '@/lib/modal-keys/AdminModalKeys';
 import ManagerNoStructureYet from './placeholders/ManagerNoStructureYet';
 import { useSelectedStructure } from '@/setup/contexts/admin/SelectedStructureContext';
 import React from 'react';
-import LoadingSidelistData from '@/components/layout/toolbar/placeholders/LoadingSidelistData';
+import LoadingSidelistData from '@/components/layout/placeholders/LoadingSidelistData';
 import { useSelectedUser } from '@/setup/contexts/app/SelectedUserContext';
 
 function ManagersSidelist() {

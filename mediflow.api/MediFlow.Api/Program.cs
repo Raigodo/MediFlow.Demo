@@ -72,6 +72,9 @@ app.MapGroup("/")
     .MapUsersEndpoints()
     .MapAvatarsEndpoints();
 
+
 app.EnsureDatabaseUpdated();
+
+app.MapGet("/api/test", () => "hi");
 
 app.Run();

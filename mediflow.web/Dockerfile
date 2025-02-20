@@ -3,9 +3,6 @@ FROM node:23-alpine3.20 AS build
 
 WORKDIR /app
 
-ENV PORT=3000
-ENV HOST=0.0.0.0
-
 COPY package.json . 
 RUN corepack enable pnpm || npm install -g pnpm
 RUN pnpm i
@@ -23,4 +20,4 @@ COPY --from=build /app .
 
 RUN pnpm install --prod
 
-CMD ["pnpm", "start"]
+CMD NEXT_PUBLIC_API_URL="asdasd" pnpm start

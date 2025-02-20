@@ -20,29 +20,33 @@ function Toolbar() {
           </div>
           <Separator className="mb-2 -translate-y-[1px]" />
           {!isAdmin && (
-            <div className="gap-1 grid">
-              <ClientToolbarItem />
-              <JournalToolbarItem />
-              {isManager && (
-                <>
-                  <Separator />
-                  <ToolbarItem
-                    route={RouteNames.Manage}
-                    icon={MonitorCogIcon}
-                    title={'Pārvaldīt struktūru'}
-                  />
-                </>
-              )}
-            </div>
+            <>
+              <div className="gap-1 grid">
+                <ClientToolbarItem />
+                <JournalToolbarItem />
+                {isManager && (
+                  <>
+                    <Separator />
+                    <ToolbarItem
+                      route={RouteNames.Manage}
+                      icon={MonitorCogIcon}
+                      title={'Pārvaldīt struktūru'}
+                    />
+                  </>
+                )}
+              </div>
+            </>
           )}
           {isAdmin && (
             <>
-              <Separator className="my-2 bg-border" />
-              <ToolbarItem
-                route={RouteNames.AdminStructure}
-                icon={GalleryHorizontalEndIcon}
-                title={'pārvaldīt lietotājus'}
-              />
+              <div className="gap-1 grid">
+                <Separator className="my-2 bg-border" />
+                <ToolbarItem
+                  route={RouteNames.AdminStructure}
+                  icon={GalleryHorizontalEndIcon}
+                  title={'pārvaldīt lietotājus'}
+                />
+              </div>
             </>
           )}
         </TooltipProvider>

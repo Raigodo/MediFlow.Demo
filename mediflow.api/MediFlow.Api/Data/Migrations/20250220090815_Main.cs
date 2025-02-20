@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -289,7 +290,7 @@ namespace MediFlow.Api.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Email", "Name", "PasswordHash", "RefreshToken", "Role", "Surname" },
-                values: new object[] { new Guid("30007b30-bdf0-4e7d-bac3-2bfca69a8c4f"), "mediflow.noreply@gmail.com", "Admin", "$2a$11$NO1OkTLc9Y3hg4HVYbB9k.KeL2L.ZmecWzPbIqTUh47gR5WtC4BJ.", new Guid("ea6aea58-b934-48a6-982c-d777145aa077"), 100, "First" });
+                values: new object[] { new Guid("30007b30-bdf0-4e7d-bac3-2bfca69a8c4f"), "mediflow.noreply@gmail.com", "Admin", "$2a$11$XBJDRZO3cIpRhoFYi.wGieOF9gRcf1FbzyFpwDf9rbAyomQmma.ya", new Guid("ea6aea58-b934-48a6-982c-d777145aa077"), 100, "First" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClientContacts_ClientId",

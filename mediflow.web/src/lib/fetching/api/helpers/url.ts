@@ -1,4 +1,5 @@
-export const baseUrl = 'http://localhost:8080';
+export const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+console.log(process.env.TEST_VAR);
 
 export const baseUrlWithPath = (path: string) => {
 	if (!path.startsWith('/')) {

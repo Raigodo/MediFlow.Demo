@@ -1,7 +1,7 @@
 import { ClientEntity } from '@/lib/domain/entities/ClientEntity';
 import { useClients } from '@/lib/fetching/api/hooks/clients/useClients';
 import { CirclePlusIcon } from 'lucide-react';
-import LoadingSidelistData from '@/components/layout/toolbar/placeholders/LoadingSidelistData';
+import LoadingSidelistData from '@/components/layout/placeholders/LoadingSidelistData';
 import { Button } from '@/components/ui/button';
 import { useModalManager } from '@/setup/contexts/core/ModalManagerContext';
 import { AppModalKeys } from '@/lib/modal-keys/AppModalKeys';
