@@ -43,11 +43,14 @@ public sealed class ResponseFactory
         IDictionary<string, IEnumerable<string>>? errors = null)
     {
         var expando = new ExpandoObject();
-        var expandoDict = (IDictionary<string, object>)expando;
+        var expandoDict = (IDictionary<string, object>)expando!;
 
-        foreach (var kvp in errors)
+        if (errors is { })
         {
-            expandoDict[kvp.Key] = kvp.Value;
+            foreach (var kvp in errors)
+            {
+                expandoDict[kvp.Key] = kvp.Value;
+            }
         }
         var responseBody = new
         {

@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediFlow.Api", "MediFlow.Ap
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{FE2B44BB-1062-403C-B98B-D5E2F1BD9C7C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediFlow.Functions", "..\MediFlow.Functions\MediFlow.Functions.csproj", "{D23F90AF-633E-4CBC-B716-FCD1B694FC8F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{FE2B44BB-1062-403C-B98B-D5E2F1BD9C7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE2B44BB-1062-403C-B98B-D5E2F1BD9C7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE2B44BB-1062-403C-B98B-D5E2F1BD9C7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D23F90AF-633E-4CBC-B716-FCD1B694FC8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D23F90AF-633E-4CBC-B716-FCD1B694FC8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D23F90AF-633E-4CBC-B716-FCD1B694FC8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D23F90AF-633E-4CBC-B716-FCD1B694FC8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

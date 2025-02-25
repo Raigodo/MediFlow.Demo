@@ -15,6 +15,8 @@ using SharpGrip.FluentValidation.AutoValidation.Endpoints.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddLogging();
+
 builder.Services
     .AddDevCors()
     .AddEndpointsApiExplorer()

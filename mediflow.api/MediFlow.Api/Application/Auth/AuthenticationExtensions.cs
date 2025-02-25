@@ -1,4 +1,4 @@
-﻿using MediFlow.Api.Application.Auth.Handlers;
+﻿using MediFlow.Api.Application.Auth.SchemeHandlers;
 using MediFlow.Api.Application.Auth.Values;
 using MediFlow.Api.Modules.Auth.Options;
 using Microsoft.AspNetCore.Authentication;

@@ -22,58 +22,25 @@ public sealed class AccessGuard(
                 && (
                     c.Structure.ManagerId == currentUser.UserId
                     || c.Structure.Employees.Any(e => e.UserId == currentUser.UserId)
-                ));
+                )
+            );
     }
 
-    public Task<bool> CanWriteAsync(ClientId clientId) =>
-        CanViewAsync(clientId);
+    public Task<bool> CanWriteAsync(ClientId clientId) => CanViewAsync(clientId);
 
 
     public Task<bool> CanViewAsync(NoteId noteId)
     {
         if (currentUser.UserRole == UserRoles.Admin) return Task.FromResult(true);
         return dbContext.Notes
-            .AsSplitQuery()
             .AnyAsync(n =>
                 n.Id == noteId
-                && (
+                &&
+                (
                     n.Creator.Structure.ManagerId == currentUser.UserId
-                    ||
-                        n.Creator.Structure.Employees.Any(e => e.UserId == currentUser.UserId)
-                        && n.Creator.Role <= dbContext.Employees
-                            .Where(e =>
-                                e.StructureId == n.Creator.StructureId
-                                && e.UserId == currentUser.UserId)
-                            .Select(e => e.Role)
-                            .FirstOrDefault()
-                    )
-                );
-    }
-
-
-    public Task<bool> CanViewAsync(ClientId clientId, EmployeeRoles employeeRole)
-    {
-        if (currentUser.UserRole == UserRoles.Admin) return Task.FromResult(true);
-        return dbContext.Notes
-            .AsSplitQuery()
-            .AnyAsync(n =>
-
-                    n.Client.Id == clientId
-                    && n.CreatedOn == DateOnly.FromDateTime(DateTime.UtcNow)
-                    && n.Creator.Role == employeeRole
-
-                && (
-                    n.Creator.Structure.ManagerId == currentUser.UserId
-                    ||
-                        n.Creator.Structure.Employees.Any(e => e.UserId == currentUser.UserId)
-                        && n.Creator.Role <= dbContext.Employees
-                            .Where(e =>
-                                e.StructureId == n.Creator.StructureId
-                                && e.UserId == currentUser.UserId)
-                            .Select(e => e.Role)
-                            .FirstOrDefault()
-                    )
-                );
+                    || currentUser.EmployeeRole >= n.Creator.Role
+                )
+            );
     }
 
     public Task<bool> CanWriteAsync(NoteId noteId)
@@ -86,39 +53,65 @@ public sealed class AccessGuard(
     }
 
 
-    public Task<bool> CanWriteAsync(ClientId clientId, EmployeeRoles employeeRole)
+    public Task<bool> CanViewAsync(ClientId clientId, EmployeeRoles employeeRole)
     {
         if (currentUser.UserRole == UserRoles.Admin) return Task.FromResult(true);
         return dbContext.Notes
-            .AsSplitQuery()
             .AnyAsync(n =>
 
                     n.Client.Id == clientId
                     && n.CreatedOn == DateOnly.FromDateTime(DateTime.UtcNow)
                     && n.Creator.Role == employeeRole
 
-                && (
+                &&
+                (
                     n.Creator.Structure.ManagerId == currentUser.UserId
-                    || n.Creator.Role == currentUser.EmployeeRole
-                ));
+                    || currentUser.EmployeeRole >= n.Creator.Role
+                )
+            );
+    }
+
+
+    public Task<bool> CanWriteAsync(ClientId clientId, EmployeeRoles employeeRole)
+    {
+        if (currentUser.UserRole == UserRoles.Admin) return Task.FromResult(true);
+        return dbContext.Notes
+            .AnyAsync(n =>
+
+                    n.Client.Id == clientId
+                    && n.CreatedOn == DateOnly.FromDateTime(DateTime.UtcNow)
+                    && n.Creator.Role == employeeRole
+
+                && n.Creator.UserId == currentUser.UserId
+            );
     }
 
 
     public Task<bool> CanViewAsync(StructureId structureId)
     {
-        if (currentUser.UserRole == UserRoles.Admin) return Task.FromResult(true);
+        if (currentUser.UserRole == UserRoles.Admin
+            || currentUser.StructureId == structureId)
+            return Task.FromResult(true);
+
         return dbContext.Structures
             .AnyAsync(s =>
                 s.Id == structureId
                 && (
                     s.Employees.Any(e => e.UserId == currentUser.UserId)
                     || s.ManagerId == currentUser.UserId
-                ));
+                )
+            );
     }
 
     public Task<bool> CanWriteAsync(StructureId structureId)
     {
-        if (currentUser.UserRole == UserRoles.Admin) return Task.FromResult(true);
+        if (currentUser.UserRole == UserRoles.Admin ||
+
+                currentUser.UserRole == UserRoles.Manager
+                && currentUser.StructureId == structureId
+            )
+            return Task.FromResult(true);
+
         return dbContext.StructureManagers
             .AnyAsync(s => s.StructureId == structureId && s.ManagerId == currentUser.UserId);
     }
@@ -132,13 +125,15 @@ public sealed class AccessGuard(
                 && s.Structure.ManagerId == currentUser.UserId);
     }
 
-    public Task<bool> CanWriteAsync(InvitationId invitationId) =>
-        CanViewAsync(invitationId);
+    public Task<bool> CanWriteAsync(InvitationId invitationId) => CanViewAsync(invitationId);
 
 
     public Task<bool> CanViewAsync(EmployeeId employeeId)
     {
-        if (currentUser.UserRole == UserRoles.Admin) return Task.FromResult(true);
+        if (currentUser.EmployeeId == employeeId
+            || currentUser.UserRole == UserRoles.Admin)
+            return Task.FromResult(true);
+
         return dbContext.Structures
             .AnyAsync(s =>
                 (
@@ -164,15 +159,18 @@ public sealed class AccessGuard(
             return Task.FromResult(true);
         return dbContext.Structures
             .Where(s =>
+                //get structure where is current user
                 s.Employees.Any(e => e.UserId == currentUser.UserId) || s.ManagerId == currentUser.UserId)
             .Where(s =>
+                //get subset of structures where is second user
                 s.Employees.Any(e => e.UserId == userId) || s.ManagerId == userId)
             .AnyAsync();
     }
 
     public Task<bool> CanWriteAsync(UserId userId)
     {
-        if (currentUser.UserId == userId) return Task.FromResult(true);
-        return Task.FromResult(currentUser.UserRole == UserRoles.Admin);
+        return Task.FromResult(
+            currentUser.UserRole == UserRoles.Admin
+            || currentUser.UserId == userId);
     }
 }
