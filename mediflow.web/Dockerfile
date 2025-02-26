@@ -20,4 +20,4 @@ COPY --from=build /app .
 
 RUN pnpm install --prod
 
-CMD NEXT_PUBLIC_API_URL="asdasd" pnpm start
+CMD pnpm start
